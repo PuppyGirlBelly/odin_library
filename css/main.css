@@ -1,0 +1,64 @@
+form {
+  margin: 25px auto;
+  width: 90%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+form label {
+  width: 200px;
+  margin-right: 20px;
+  position: relative;
+}
+
+form label:last-of-type {
+  width: unset;
+}
+
+form input[type="text"] {
+  width: 60%;
+  position: absolute;
+  right: 0;
+  top: -15%;
+}
+
+/* form input[type="checkbox"] { */
+/* } */
+
+form button {
+  margin-top: -10px;
+  height: 35px;
+}
+
+table {
+  width: 90%;
+  margin: 25px auto;
+  border-collapse: collapse;
+}
+
+table * {
+  border: 1px solid #cecece;
+  padding: 0.5em;
+}
+
+thead td {
+  text-align: center;
+  font-style: italic;
+}
+
+tbody tr {
+  height: 50px;
+}
+
+tbody tr td:first-child {
+  text-align: center;
+}
+
+.btn {
+  background: none;
+  border: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+}

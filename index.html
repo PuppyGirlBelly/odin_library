@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/main.js" defer></script>
+    </head>
+    <body>
+      <h1>My Library</h1>
+      <p><em>A project for the Odin Project</em></p>
+
+      <form method="get">
+        <label for="book-title">Title:
+          <input type="text" name="book-title" id="book-title">
+        </label>
+        <label for="book-author">Author:
+          <input type="text" name="book-author" id="book-author">
+        </label>
+        <label for="book-pages">Pages:
+          <input type="text" name="book-pages" id="book-pages">
+        </label>
+        <label for="book-read">Read:
+          <input type="checkbox" name="book-read" id="book-read" value="true">
+        </label>
+        <button type="button" class="add-button" id="add-book">Add a book!</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th colspan="5">My Library Books</th>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Pages</td>
+            <td>Has Read</td>
+          </tr>
+        </thead>
+        <tbody id="myLibraryTable">
+        </tbody>
+      </table>
+    </body>
+</html>
