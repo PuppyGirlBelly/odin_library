@@ -1,32 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
 form {
   margin: 25px auto;
   width: 90%;
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
 }
-
 form label {
-  width: 200px;
+  flex: 1 0 100px;
   margin-right: 20px;
-  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
-
 form label:last-of-type {
-  width: unset;
+  flex: unset;
 }
-
-form input[type="text"] {
-  width: 60%;
-  position: absolute;
-  right: 0;
-  top: -15%;
+form label input[type=text] {
+  width: auto;
+  flex: 1 1 60%;
 }
-
-/* form input[type="checkbox"] { */
-/* } */
-
 form button {
-  margin-top: -10px;
   height: 35px;
 }
 
@@ -35,30 +32,28 @@ table {
   margin: 25px auto;
   border-collapse: collapse;
 }
-
 table * {
   border: 1px solid #cecece;
   padding: 0.5em;
 }
-
-thead td {
+table thead td {
   text-align: center;
   font-style: italic;
 }
-
-tbody tr {
+table tbody tr {
   height: 50px;
 }
-
-tbody tr td:first-child {
+table tbody tr td:first-child, table tbody tr td:last-child {
   text-align: center;
 }
 
 .btn {
   background: none;
   border: none;
+  font-size: 1.1rem;
 }
-
 .btn:hover {
   cursor: pointer;
 }
+
+/*# sourceMappingURL=main.css.map */
