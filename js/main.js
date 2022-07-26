@@ -6,10 +6,14 @@ class Book {
     this.author = author;
     this.pages = pages;
     this.read = read;
+  }
 
-    this.info = () => {
-      return [this.title, this.author, this.pages, this.read];
-    };
+  info() {
+    return [this.title, this.author, this.pages];
+  }
+
+  toggleRead() {
+    this.read = this.read ? false : true;
   }
 }
 
@@ -24,13 +28,13 @@ function removeBookFromLibrary(index) {
 
 function createDeleteButton(index) {
   const button = document.createElement('button');
-  button.id = index;
+  button.classList.add(index);
   button.classList.add('btn');
-  button.textContent = '❎';
+  button.textContent = '❌';
   button.type = 'button';
 
   button.addEventListener('mouseup', (event) => {
-    removeBookFromLibrary(event.target.id);
+    removeBookFromLibrary(event.target.classList[0]);
     // eslint-disable-next-line no-use-before-define
     displayLibraryBooks();
   });
@@ -38,15 +42,22 @@ function createDeleteButton(index) {
   return button;
 }
 
-function createDeleteButton(index) {
+function createReadButton(index) {
   const button = document.createElement('button');
-  button.id = index;
+  const book = myLibrary[index];
+  button.classList.add(index);
   button.classList.add('btn');
-  button.textContent = '❎';
   button.type = 'button';
 
+  if (book.read) {
+    button.textContent = '✅';
+  }
+  if (!book.read) {
+    button.textContent = '❎';
+  }
+
   button.addEventListener('mouseup', (event) => {
-    removeBookFromLibrary(event.target.id);
+    myLibrary[event.target.classList[0]].toggleRead();
     // eslint-disable-next-line no-use-before-define
     displayLibraryBooks();
   });
@@ -61,13 +72,17 @@ function displayLibraryBooks() {
   myLibrary.forEach((book, index) => {
     const row = table.insertRow();
     let cell = row.insertCell();
-    const button = createDeleteButton(index);
+    let button = createDeleteButton(index);
     cell.appendChild(button);
 
     book.info().forEach((info) => {
       cell = row.insertCell();
       cell.innerText = info;
     });
+
+    cell = row.insertCell();
+    button = createReadButton(index);
+    cell.appendChild(button);
   });
 }
 
