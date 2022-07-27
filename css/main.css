@@ -2,9 +2,39 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100vh;
+  background: url("/img/background.gif") center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  image-rendering: pixelated;
+}
+
+body {
+  width: 90vw;
+  min-height: 90vh;
+  padding: 50px;
+  margin: 50px 5vw;
+  overflow-y: auto;
+  background-color: rgba(109, 104, 117, 0.9);
+  color: #FFCDB1;
+}
+body h1 {
+  margin-bottom: 8px;
+}
+body hr {
+  border: 1px solid #FFB4A2;
+  width: 200px;
+  margin: 0px;
+}
+
 form {
-  margin: 25px auto;
-  width: 90%;
+  margin: 25px 0;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #FFCDB1;
+  color: #6D6875;
+  font-weight: bold;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -29,23 +59,41 @@ form button {
 }
 
 table {
-  width: 90%;
+  width: 100%;
   margin: 25px auto;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 1px 4px;
 }
-table * {
-  border: 1px solid #cecece;
-  padding: 0.5em;
+table td,
+table th {
+  background-color: #FFCDB1;
+  color: #6D6875;
+  padding: 8px;
+  border: 1px solid #FFCDB1;
+}
+table th {
+  border-radius: 12px;
+}
+table td:first-child {
+  text-align: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+table td:last-child {
+  text-align: center;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 table thead td {
-  text-align: center;
+  position: sticky;
   font-style: italic;
+  font-weight: bold;
+}
+table tbody {
+  overflow: auto;
 }
 table tbody tr {
   height: 50px;
-}
-table tbody tr td:first-child, table tbody tr td:last-child {
-  text-align: center;
 }
 
 .btn {

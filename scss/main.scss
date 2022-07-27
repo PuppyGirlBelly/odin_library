@@ -1,12 +1,50 @@
-@use 'color';
+@use 'palette';
+@use 'sass:color';
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  height: 100vh;
+  background: url('/img/background.gif') center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  image-rendering: pixelated;
+}
+
+body {
+  width: 90vw;
+  min-height: 90vh;
+  padding: 50px;
+  margin: 50px 5vw;
+
+  overflow-y: auto;
+
+  background-color: color.adjust(palette.$c5, $alpha: -0.1);
+  color: palette.$c1;
+
+  h1 {
+    margin-bottom: 8px;
+  }
+
+  hr {
+    border: 1px solid palette.$c2;
+    width: 200px;
+    margin: 0px;
+  }
+}
+
+
 form {
-  margin: 25px auto;
-  width: 90%;
+  margin: 25px 0;
+  padding: 12px;
+  border-radius: 12px;
+
+  background-color: palette.$c1;
+  color: palette.$c5;
+  font-weight: bold;
+
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -36,26 +74,47 @@ form {
 }
 
 table {
-  width: 90%;
+  width: 100%;
   margin: 25px auto;
-  border-collapse: collapse;
 
-  * {
-    border: 1px solid #cecece;
-    padding: 0.5em;
+  border-collapse: separate;
+  border-spacing: 1px 4px;
+
+  td,
+  th {
+    background-color: palette.$c1;
+    color: palette.$c5;
+    padding: 8px;
+    border: 1px solid palette.$c1;
+  }
+
+  th {
+    border-radius: 12px;
+  }
+
+  td:first-child {
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+
+  td:last-child {
+    text-align: center;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
   }
 
   thead td {
-    text-align: center;
+    position: sticky;
     font-style: italic;
+    font-weight: bold;
   }
 
-  tbody tr {
-    height: 50px;
+  tbody {
+    overflow: auto;
 
-    & td:first-child,
-    & td:last-child {
-      text-align: center;
+    tr {
+      height: 50px;
     }
   }
 }
