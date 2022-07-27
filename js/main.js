@@ -49,10 +49,10 @@ function createReadButton(index) {
   button.classList.add('btn');
   button.type = 'button';
 
-  if (book.read) {
+  if (book.read === true) {
     button.textContent = '✅';
   }
-  if (!book.read) {
+  if (book.read === false) {
     button.textContent = '❎';
   }
 
@@ -101,7 +101,7 @@ function getFormInfo() {
   const title = document.getElementById('book-title').value;
   const author = document.getElementById('book-author').value;
   const pages = document.getElementById('book-pages').value;
-  const read = document.getElementById('book-read').value;
+  const read = document.getElementById('book-read').checked;
 
   return [title, author, pages, read];
 }
