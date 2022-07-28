@@ -1,4 +1,38 @@
-const myLibrary = [];
+class Library {
+  constructor() {
+    this.books = [];
+    this.table = document.getElementById('myLibraryTable');
+  }
+
+  add(title, author, pages, read) {
+    const newBook = new Book(title, author, pages, read);
+    this.books.push(newBook);
+  }
+
+  remove(index) {
+    this.books.splice(index, 1);
+  }
+
+  display() {
+    this.table.textContent = '';
+
+    this.books.forEach((book, index) => {
+      const row = this.table.insertRow();
+      let cell = row.insertCell();
+      let button = book.createDeleteButton(index);
+      cell.appendChild(button);
+
+      book.info().forEach((info) => {
+        cell = row.insertCell();
+        cell.innerText = info;
+      });
+
+      cell = row.insertCell();
+      button = book.createReadButton(index);
+      cell.appendChild(button);
+    });
+  }
+}
 
 class Book {
   constructor(title, author, pages, read) {
@@ -15,87 +49,36 @@ class Book {
   toggleRead() {
     this.read = this.read ? false : true;
   }
-}
 
-function addBookToLibrary(title, author, pages, read) {
-  const newBook = new Book(title, author, pages, read);
-  myLibrary.push(newBook);
-}
+  createReadButton() {
+    const button = document.createElement('button');
+    button.classList.add('btn');
+    button.textContent = this.read ? '✅' : '❎';
+    button.type = 'button';
 
-function removeBookFromLibrary(index) {
-  myLibrary.splice(index, 1);
-}
-
-function createDeleteButton(index) {
-  const button = document.createElement('button');
-  button.classList.add(index);
-  button.classList.add('btn');
-  button.textContent = '❌';
-  button.type = 'button';
-
-  button.addEventListener('mouseup', (event) => {
-    removeBookFromLibrary(event.target.classList[0]);
-    // eslint-disable-next-line no-use-before-define
-    displayLibraryBooks();
-  });
-
-  return button;
-}
-
-function createReadButton(index) {
-  const button = document.createElement('button');
-  const book = myLibrary[index];
-  button.classList.add(index);
-  button.classList.add('btn');
-  button.type = 'button';
-
-  if (book.read === true) {
-    button.textContent = '✅';
-  }
-  if (book.read === false) {
-    button.textContent = '❎';
-  }
-
-  button.addEventListener('mouseup', (event) => {
-    myLibrary[event.target.classList[0]].toggleRead();
-    // eslint-disable-next-line no-use-before-define
-    displayLibraryBooks();
-  });
-
-  return button;
-}
-
-function displayLibraryBooks() {
-  const table = document.getElementById('myLibraryTable');
-  table.textContent = '';
-
-  myLibrary.forEach((book, index) => {
-    const row = table.insertRow();
-    let cell = row.insertCell();
-    let button = createDeleteButton(index);
-    cell.appendChild(button);
-
-    book.info().forEach((info) => {
-      cell = row.insertCell();
-      cell.innerText = info;
+    button.addEventListener('mouseup', () => {
+      this.toggleRead();
+      lib.display();
     });
 
-    cell = row.insertCell();
-    button = createReadButton(index);
-    cell.appendChild(button);
-  });
+    return button;
+  }
+
+  createDeleteButton() {
+    const button = document.createElement('button');
+    button.classList.add('btn');
+    button.textContent = '❌';
+    button.type = 'button';
+
+    button.addEventListener('mouseup', () => {
+      const i = lib.books.findIndex((book) => this === book);
+      lib.remove(i);
+      lib.display();
+    });
+
+    return button;
+  }
 }
-
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
-addBookToLibrary('All Dogs Have ADHD', 'Kathy Hoopman', 72, true);
-addBookToLibrary(
-  'The Principles of Object-Oriented JavaScript',
-  'Nicholas C. Zakas',
-  120,
-  true
-);
-
-displayLibraryBooks();
 
 function getFormInfo() {
   const title = document.getElementById('book-title').value;
@@ -107,10 +90,29 @@ function getFormInfo() {
 }
 
 const addBook = document.getElementById('add-book');
+const form = document.querySelector('form');
 addBook.addEventListener('mouseup', () => {
-  const form = document.querySelector('form');
   const bookInfo = getFormInfo();
-  addBookToLibrary(...bookInfo);
+  lib.add(...bookInfo);
   form.reset();
-  displayLibraryBooks();
+  lib.display();
 });
+form.addEventListener('submit', () => {
+  const bookInfo = getFormInfo();
+  lib.add(...bookInfo);
+  form.reset();
+  lib.display();
+});
+
+let lib = new Library();
+
+lib.add('The Hobbit', 'J.R.R. Tolkien', 295, false);
+lib.add('All Dogs Have ADHD', 'Kathy Hoopman', 72, true);
+lib.add(
+  'The Principles of Object-Oriented JavaScript',
+  'Nicholas C. Zakas',
+  120,
+  true
+);
+
+lib.display();

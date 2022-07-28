@@ -1,6 +1,8 @@
 @use 'palette';
 @use 'sass:color';
 
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +13,8 @@ html {
   background-size: cover;
   background-attachment: fixed;
   image-rendering: pixelated;
+
+  font-family: 'Radio Canada', sans-serif;
 }
 
 body {
@@ -23,6 +27,7 @@ body {
 
   background-color: color.adjust(palette.$c5, $alpha: -0.1);
   color: palette.$c1;
+  border-radius: 8px;
 
   h1 {
     margin-bottom: 8px;
@@ -38,7 +43,7 @@ body {
 
 form {
   margin: 25px 0;
-  padding: 12px;
+  padding: 24px;
   border-radius: 12px;
 
   background-color: palette.$c1;
@@ -99,7 +104,18 @@ form {
   }
 
   button {
-    padding: 10px;
+    padding: 12px;
+    outline: 1px solid palette.$c4;
+    border: none;
+    background: palette.$c5;
+    color: palette.$c1;
+    border-radius: 4px;
+
+    &:hover {
+      background: palette.$c2;
+      outline: 1px solid palette.$c4;
+      color: palette.$c5;
+    }
   }
 }
 
