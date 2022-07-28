@@ -7,6 +7,7 @@ html {
   background: url("/img/background.gif") center no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  image-rendering: -moz-crisp-edges;
   image-rendering: pixelated;
 }
 
@@ -85,6 +86,7 @@ table td:last-child {
   border-bottom-right-radius: 12px;
 }
 table thead td {
+  position: -webkit-sticky;
   position: sticky;
   font-style: italic;
   font-weight: bold;
@@ -104,5 +106,4 @@ table tbody tr {
 .btn:hover {
   cursor: pointer;
 }
-
 /*# sourceMappingURL=main.css.map */
